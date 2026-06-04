@@ -665,16 +665,19 @@ name = "kite-connect"
 version = "0.3.0"
 dependencies = [
  "anyhow",
+ "base64",
  "byteorder",
  "chrono",
  "futures-util",
  "hex",
+ "native-tls",
  "reqwest",
  "serde",
  "serde_json",
  "sha2",
  "thiserror 2.0.18",
  "tokio",
+ "tokio-native-tls",
  "tokio-tungstenite",
  "tracing",
 ]
