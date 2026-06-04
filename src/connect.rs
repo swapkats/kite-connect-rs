@@ -232,8 +232,13 @@ impl KiteClient {
             }
         }
 
-        let candles = resp.get("data").and_then(|v| v.as_array());
-        match candles {
+        // Kite returns {"data": {"candles": [[date, open, high, low, close, volume], ...]}}
+        let candles_obj = resp.get("data");
+        let candle_arrays = candles_obj
+            .and_then(|d| d.get("candles"))
+            .and_then(|v| v.as_array());
+
+        match candle_arrays {
             Some(arr) => {
                 let mut result = Vec::with_capacity(arr.len());
                 for candle in arr {
